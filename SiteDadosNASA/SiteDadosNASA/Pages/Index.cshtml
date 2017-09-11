@@ -1,0 +1,27 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    ImagemNASA imagem = (ImagemNASA)TempData["ImagemNASA"];
+}
+
+<h2 style="text-align:center;">Acessando as APIs REST da NASA -
+    Imagem do Dia @imagem.Data.ToString("dd/MM/yyyy")</h2>
+<h3 style="text-align:center;">@imagem.Titulo</h3>
+
+<div style="text-align: center;">
+    @if (imagem.MediaType == "image")
+    {
+        <img src="@imagem.Url" style="height: 60%; width: 60%" />
+    }
+    else
+    {
+        <iframe id="apod_vid_id" type="text/html" src="@imagem.Url"
+                width="640" height="385" frameborder="0">
+        </iframe>
+    }
+</div>
+
+<p style="margin-top: 15px; margin-left: 20%; width: 60%;">
+    @imagem.Descricao
+</p>
